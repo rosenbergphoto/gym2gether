@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import clientsData from "../../constants/clientData"; // Opravená cesta
+import clientsData from "../../constants/clientData"; 
 import { Dumbbell, Utensils, Bell } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -25,7 +25,7 @@ const UserDashboard = () => {
 
   return (
     <div id="user-dashboard-section" className="flex flex-col items-center mt-6 lg:mt-20 px-6">
-      {/* 🏆 Hlavní nadpis s animací */}
+      {/* Hlavní nadpis s animací */}
       <motion.h1
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ const UserDashboard = () => {
         Sledujte svůj postup, získejte od svého trenéra jídelníček a trénink.
       </motion.p>
 
-      {/* 🔔 Notifikace s animací */}
+      {/* Notifikace s animací */}
       {showNotification && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,14 +65,14 @@ const UserDashboard = () => {
         </motion.div>
       )}
 
-      {/* 📌 Přepínač dnů s animací (desktop + mobilní verze) */}
+      {/* Přepínač dnů s animací (desktop + mobilní verze) */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, delay: 0.8 }}
         className="my-4"
   >
-      {/* 🖥 **Verze pro větší obrazovky (desktop)** */}
+      {/* **Verze pro větší obrazovky (desktop)** */}
       <div className="hidden md:flex justify-center space-x-2">
         {Object.keys(user.mealPlan).map((day) => (
           <button
@@ -113,14 +113,14 @@ const UserDashboard = () => {
   </div>
 </motion.div>
 
-      {/* 📌 Dlaždice */}
+      {/* Dlaždice */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1 }}
         className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12 w-full max-w-6xl"
       >
-        {/* 🥗 Jídelníček */}
+        {/* Jídelníček */}
         <div className="bg-gradient-to-br from-green-400 via-lime-500 to-green-700 text-white p-6 rounded-xl shadow-lg transition-transform transform hover:scale-105">
           <div className="flex items-center mb-4">
             <Utensils className="w-10 h-10 text-white mr-3" />
@@ -148,7 +148,7 @@ const UserDashboard = () => {
           </div>
         </div>
 
-        {/* 🏋️ Trénink */}
+        {/* Trénink */}
         <div className="bg-gradient-to-br from-blue-400 via-cyan-500 to-indigo-700 text-white p-6 rounded-xl shadow-lg transition-transform transform hover:scale-105">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">

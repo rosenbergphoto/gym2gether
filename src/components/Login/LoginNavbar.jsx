@@ -34,12 +34,12 @@ const LoginNavbar = () => {
 
   return (
     <>
-      {/* 📌 Navbar */}
+      {/* Navbar */}
       <nav className="sticky top-0 z-50 bg-transparent backdrop-blur-lg border-b border-neutral-700">
         <div className="container px-4 mx-auto relative lg:text-sm">
           <div className="flex justify-between items-center py-3">
             
-            {/* ✅ Logo a název */}
+            {/* Logo a název */}
             <RouterLink to="/" className="flex items-center flex-shrink-0 cursor-pointer">
               <img className="h-10 w-10 mr-2" src={logo} alt="Logo" />
               <span className="text-xl tracking-tight">Gym2gether</span>
@@ -70,7 +70,7 @@ const LoginNavbar = () => {
         </div>
       </nav>
 
-      {/* 📌 Pop-up okno */}
+      {/* Pop-up okno */}
       {isPopupOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md z-50">
           <div className="bg-neutral-900 text-white p-8 rounded-xl shadow-lg w-96 text-center">
@@ -80,7 +80,7 @@ const LoginNavbar = () => {
               vyplňte svůj e-mail a my vám pošleme pokyny s dalšími kroky.
             </p>
             
-            {/* 🔹 Pole pro zadání e-mailu */}
+            {/* Pole pro zadání e-mailu */}
             <input
               type="email"
               value={email}
@@ -89,7 +89,7 @@ const LoginNavbar = () => {
               className="w-full px-4 py-2 mb-4 text-white bg-neutral-800 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
             />
 
-            {/* 🔹 Akční tlačítka */}
+            {/* Akční tlačítka */}
             <div className="flex justify-center space-x-4">
               <button 
                 onClick={handleSendEmail} 

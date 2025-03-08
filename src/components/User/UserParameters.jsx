@@ -24,7 +24,7 @@ const UserParameters = () => {
     transition={{ duration: 1, delay: 1 }}
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12 w-full max-w-[75rem] mx-auto px-6"
     >
-      {/* 🔥 Průměrně spálené kalorie */}
+      {/* Průměrně spálené kalorie */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -53,7 +53,7 @@ const UserParameters = () => {
         </div>
       </motion.div>
 
-      {/* 🚶‍♂️ Průměrná vzdálenost */}
+      {/* Průměrná vzdálenost */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -82,7 +82,7 @@ const UserParameters = () => {
         </div>
       </motion.div>
 
-      {/* 👣 Průměrný počet kroků */}
+      {/* Průměrný počet kroků */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}

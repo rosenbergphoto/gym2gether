@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import logo from "../../assets/fiticon.png";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
+import { motion, AnimatePresence } from "framer-motion";
 
 const UserNavbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -20,7 +21,7 @@ const UserNavbar = () => {
 
   const toggleChat = () => {
     setIsChatOpen(!isChatOpen);
-    document.body.style.overflow = isChatOpen ? "auto" : "hidden"; // Blokování scrollování při chatu
+    document.body.style.overflow = isChatOpen ? "auto" : "hidden"; 
   };
 
   const sendMessage = () => {
@@ -28,7 +29,6 @@ const UserNavbar = () => {
       setMessages([...messages, { text: message, sender: "user" }]);
       setMessage("");
 
-      // Simulovaná odpověď trenéra
       setTimeout(() => {
         setMessages((prev) => [
           ...prev,
@@ -63,12 +63,12 @@ const UserNavbar = () => {
               <span className="text-xl tracking-tight">Gym2gether</span>
             </RouterLink>
 
-            {/* Dlaždice "Trenérské rozhraní" */}
+            {/* Dlaždice "Klienstské rozhraní" */}
             <div className="hidden lg:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-teal-500/20 text-teal-400 px-6 py-2 rounded-lg shadow-md">
               <span className="text-lg font-semibold">Klienstské rozhraní</span>
             </div>
 
-            {/* Tlačítka */}
+            {/* Akční tlačítka pro PC */}
             <div className="hidden lg:flex justify-center space-x-6 items-center">
               <button 
                 onClick={toggleChat} 
@@ -92,6 +92,53 @@ const UserNavbar = () => {
           </div>
         </div>
       </nav>
+
+      {/* Animované mobilní menu */}
+      <AnimatePresence>
+        {mobileDrawerOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-y-0 right-0 w-64 bg-neutral-900 shadow-lg p-6 z-50 transform"
+          >
+            {/* Zavírací tlačítko */}
+            <button
+              onClick={toggleNavbar}
+              className="py-3 px-6 bg-blue-600 text-white rounded-md shadow-md hover:scale-105 hover:bg-blue-700 transition cursor-pointer w-full text-center"
+            >
+              Zavřít
+            </button>
+
+            {/* Navigační tlačítka */}
+            <ul className="mt-6 space-y-4">
+              <li>
+                <button
+                  onClick={() => {
+                    toggleChat();
+                    setMobileDrawerOpen(false);
+                  }}
+                  className="block w-full text-lg text-white hover:text-indigo-500 transition  items-center"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" /> Chat s trenérem
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setMobileDrawerOpen(false);
+                  }}
+                  className="block w-full text-lg text-red-500 hover:text-red-400 transition  items-center"
+                >
+                  <LogOut className="w-5 h-5 mr-2" /> Odhlásit se
+                </button>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Chatovací okno */}
       {isChatOpen && (
@@ -125,7 +172,6 @@ const UserNavbar = () => {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Napište zprávu..."
               className="flex-1 p-2 bg-white/10 text-white placeholder-gray-300 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-              onKeyPress={(e) => e.key === "Enter" && sendMessage()}
             />
             <button 
               onClick={sendMessage} 
@@ -136,19 +182,18 @@ const UserNavbar = () => {
           </div>
         </div>
       )}
-
-{/* Šipka zpět nahoru */}
-{showScroll && (
-  <ScrollLink 
-    to="user-dashboard-section" // Odkazujeme na správné ID
-    smooth={true}
-    duration={500}
-    offset={-50} // Upravíme offset kvůli navbaru
-    className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-500 via-indigo-600 to-indigo-800 p-3 rounded-full shadow-lg text-white cursor-pointer transition hover:scale-110"
-  >
-    <ArrowUp size={24} />
-  </ScrollLink>
-)}
+        {/* Šipka zpět nahoru */}
+        {showScroll && (
+          <ScrollLink 
+            to="user-dashboard-section" // Odkazujeme na správné ID
+            smooth={true}
+            duration={500}
+            offset={-50} // Upravíme offset kvůli navbaru
+            className="fixed bottom-6 right-6 bg-gradient-to-r from-blue-500 via-indigo-600 to-indigo-800 p-3 rounded-full shadow-lg text-white cursor-pointer transition hover:scale-110"
+        >
+          <ArrowUp size={24} />
+        </ScrollLink>
+      )}
     </>
   );
 };

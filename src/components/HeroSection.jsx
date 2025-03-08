@@ -16,7 +16,7 @@ const HeroSection = () => {
   return (
     <div id="herosection" className="relative flex flex-col items-center mt-6 lg:mt-20 px-6">
       
-{/* 📌 Obrázek s rozmazáním a fade-out efektem */}
+{/* Obrázek s rozmazáním a fade-out efektem */}
 <div className="absolute top-[-6rem] left-1/2 transform -translate-x-1/2 flex justify-center w-full">
   <motion.div
     className="relative w-64 sm:w-80 md:w-96"
@@ -24,21 +24,16 @@ const HeroSection = () => {
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 1 }}
   >
-    {/* ✅ Samotný obrázek s rozmazáním */}
+    {/* Samotný obrázek s rozmazáním */}
     <img
       src={titleImage}
       alt="Title Fitness"
-      className="w-full relative z-10 mask-image-gradient"// ✅ Přidáno rozmazání
+      className="w-full relative z-10 mask-image-gradient"
     />
-
   </motion.div>
 </div>
 
-
-
-
-
-      {/* 🏆 Hlavní nadpis s animací */}
+      {/* Hlavní nadpis s animací */}
       <motion.h1
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: animateText ? 1 : 0, y: animateText ? 0 : -50 }}
@@ -61,7 +56,7 @@ const HeroSection = () => {
         Připojte se k platformě propojující trenéry a sportovce, kde můžete sledovat svůj progres, najít tréninkové plány a spojit se s profesionály.
       </motion.p>
 
-      {/* 📌 Akční tlačítka s animací */}
+      {/* Akční tlačítka s animací */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: animateText ? 1 : 0, y: animateText ? 0 : 30 }}
@@ -86,7 +81,7 @@ const HeroSection = () => {
         </button>
       </motion.div>
 
-      {/* 🎥 Videa - zvětšená */}
+            {/* Videa - zvětšená */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: animateText ? 1 : 0, y: animateText ? 0 : 30 }}
@@ -97,7 +92,8 @@ const HeroSection = () => {
           autoPlay
           loop
           muted
-          className="rounded-lg w-full sm:w-[48%] border border-blue-500 shadow-sm shadow-indigo-800 mx-2 my-4"
+          playsInline
+          className="rounded-lg w-full sm:w-[48%] max-w-[600px] border border-blue-500 shadow-sm shadow-indigo-800 mx-2 my-4 pointer-events-none"
         >
           <source src={video1} type="video/mp4" />
           Your browser does not support the video tag.
@@ -106,14 +102,15 @@ const HeroSection = () => {
           autoPlay
           loop
           muted
-          className="rounded-lg w-full sm:w-[48%] border border-blue-500 shadow-sm shadow-indigo-800 mx-2 my-4"
+          playsInline
+          className="rounded-lg w-full sm:w-[48%] max-w-[600px] border border-blue-500 shadow-sm shadow-indigo-800 mx-2 my-4 pointer-events-none"
         >
           <source src={video2} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </motion.div>
 
-      {/* 📌 Modal "O nás" */}
+      {/* "O nás" */}
       {isAboutOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <motion.div

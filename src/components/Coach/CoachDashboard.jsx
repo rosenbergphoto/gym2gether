@@ -50,7 +50,7 @@ const CoachDashboard = () => {
   
       setChangedFields((prev) => ({
         ...prev,
-        [`workout-${currentWorkoutDay}-${index}-${field}`]: true, // Označíme změněné pole
+        [`workout-${currentWorkoutDay}-${index}-${field}`]: true, 
       }));
   
       return updatedClients;
@@ -62,7 +62,7 @@ const CoachDashboard = () => {
   const toggleEditMode = () => {
     if (editMode) {
       setClients(JSON.parse(JSON.stringify(backupClients)));
-      setChangedFields({}); // Reset změněných hodnot
+      setChangedFields({}); 
     } else {
       setBackupClients(JSON.parse(JSON.stringify(clients)));
     }
@@ -223,7 +223,7 @@ const CoachDashboard = () => {
     transition={{ duration: 0.7, delay: 0.2 }} 
     className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6 w-full"
 >
-  {/* 🥗 Jídelníček */}
+  {/* Jídelníček */}
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -237,7 +237,7 @@ const CoachDashboard = () => {
       </div>
     </div>
 
-    {/* 🔄 Přepínač dnů */}
+    {/* Přepínač dnů */}
     <div className="flex justify-center space-x-2 mb-4">
       <button onClick={prevMealDay} className="bg-gray-700 text-white px-3 py-1 rounded-md shadow-md hover:scale-105 transition">
         ◀
@@ -248,7 +248,7 @@ const CoachDashboard = () => {
       </button>
     </div>
 
-    {/* 📌 Seznam jídel v šedé dlaždici */}
+    {/* Seznam jídel v šedé dlaždici */}
     <motion.div 
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -313,7 +313,7 @@ const CoachDashboard = () => {
     </motion.div>
   </motion.div>
 
-  {/* 🏋️ Trénink */}
+  {/* Trénink */}
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -327,7 +327,7 @@ const CoachDashboard = () => {
       </div>
     </div>
 
-    {/* 🔄 Přepínač dnů */}
+    {/* Přepínač dnů */}
     <div className="flex justify-center space-x-2 mb-4">
       <button onClick={prevWorkoutDay} className="bg-gray-700 text-white px-3 py-1 rounded-md shadow-md hover:scale-105 transition">
         ◀
@@ -338,7 +338,7 @@ const CoachDashboard = () => {
       </button>
     </div>
 
-    {/* 📌 Seznam cviků v šedé dlaždici */}
+    {/* Seznam cviků v šedé dlaždici */}
     <motion.div 
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -406,9 +406,9 @@ const CoachDashboard = () => {
 
 
 
-         {/* 📝 Tlačítka pro úpravy */}
+         {/* Tlačítka pro úpravy */}
          <div className="flex justify-between mt-4">
-            {/* 🔄 Přepnout editaci */}
+            {/* Přepnout editaci */}
             <button
               onClick={toggleEditMode}
               className={`flex items-center px-4 py-2 rounded-md shadow-md hover:scale-105 transition ${editMode ? "bg-red-500" : "bg-blue-500"} text-white`}
@@ -416,7 +416,7 @@ const CoachDashboard = () => {
               <Edit3 className="w-5 h-5 mr-2" /> {editMode ? "Zrušit úpravy" : "Upravit"}
             </button>
 
-            {/* 💾 Uložit změny */}
+            {/* Uložit změny */}
             {editMode && (
               <button
               onClick={() => {

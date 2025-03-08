@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Ruler, BarChart, Scale, Move, Smile, Calendar } from "lucide-react";
 
 const UserInitials = () => {
-  // ✅ Výchozí hodnoty pro uživatele
+{/* Výchozí hodnoty pro uživatele */}
   const [userStats, setUserStats] = useState({
     age: 25,
     weight: 80,
@@ -19,11 +19,11 @@ const UserInitials = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 2 }}
-      className="flex justify-center w-full mt-6 px-4 sm:px-6"
+      className="flex justify-center w-full mt-6 px-4 sm:px-6 "
     >
       <div className="w-full max-w-6xl bg-gradient-to-br from-purple-500 via-fuchsia-600 to-pink-700 text-white p-8 rounded-xl shadow-lg hover:scale-105 transition">
         
-        {/* 🔹 Nadpis s animovanou ikonou */}
+        {/* Nadpis s animovanou ikonou */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ const UserInitials = () => {
           <h3 className="text-2xl font-bold">Osobní údaje</h3>
         </motion.div>
 
-        {/* 📏 Osobní údaje - lepší zarovnání na mobilu a fixace šířky */}
+        {/* Osobní údaje - lepší zarovnání na mobilu a fixace šířky */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -80,7 +80,7 @@ const UserInitials = () => {
           ))}
         </motion.div>
 
-        {/* 😀 Aktuální pocit (dropdown menu) */}
+        {/* ktuální pocit (dropdown menu) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

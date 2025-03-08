@@ -3,6 +3,7 @@ import { Menu, X, MessageCircle, Send, LogOut, Users } from "lucide-react";
 import clientsData from "../../constants/clientData";
 import { useNavigate } from "react-router-dom";
 import { Link as RouterLink } from "react-router-dom"; 
+import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/fiticon.png";
 
 const CoachNavbar = () => {
@@ -20,6 +21,7 @@ const CoachNavbar = () => {
   const openChatSelection = () => {
     setIsChatOpen(true);
     setSelectedClient(null);
+    setMobileDrawerOpen(false);
   };
 
   const openChat = (client) => {
@@ -52,7 +54,7 @@ const CoachNavbar = () => {
         <div className="container px-4 mx-auto relative lg:text-sm">
           <div className="flex justify-between items-center py-3">
             
-            {/* ✅ Logo & Gym2gether (nyní bílé) */}
+            {/* Logo & Gym2gether (nyní bílé) */}
             <RouterLink to="/" className="flex items-center flex-shrink-0 cursor-pointer">
               <img className="h-10 w-10 mr-2" src={logo} alt="Logo" />
               <span className="text-xl tracking-tight">Gym2gether</span>
@@ -63,8 +65,7 @@ const CoachNavbar = () => {
               <span className="text-lg font-semibold">Trenérské rozhraní</span>
             </div>
 
-
-            {/* Tlačítka */}
+            {/* Tlačítka pro PC */}
             <div className="hidden lg:flex justify-center space-x-6 items-center">
               <button 
                 onClick={openChatSelection} 
@@ -88,6 +89,47 @@ const CoachNavbar = () => {
           </div>
         </div>
       </nav>
+
+      {/* Animované mobilní menu */}
+      <AnimatePresence>
+        {mobileDrawerOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-y-0 right-0 w-64 bg-neutral-900 shadow-lg p-6 z-50 transform"
+          >
+            {/* Zavírací tlačítko */}
+            <button
+              onClick={toggleNavbar}
+              className="py-3 px-6 bg-blue-600 text-white rounded-md shadow-md hover:scale-105 hover:bg-blue-700 transition cursor-pointer w-full text-center"
+            >
+              Zavřít
+            </button>
+
+            {/* Navigační tlačítka */}
+            <ul className="mt-6 space-y-4">
+              <li>
+                <button
+                  onClick={openChatSelection}
+                  className="block w-full text-lg text-white hover:text-indigo-500 transition  items-center"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" /> Chat s klienty
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-lg text-red-500 hover:text-red-400 transition  items-center"
+                >
+                  <LogOut className="w-5 h-5 mr-2" /> Odhlásit se
+                </button>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Výběr klienta pro chat */}
       {isChatOpen && !selectedClient && (
@@ -124,7 +166,7 @@ const CoachNavbar = () => {
                 key={index}
                 className={`p-2 max-w-[75%] rounded-lg text-sm transition ${
                   msg.sender === "coach" 
-                    ? "bg-green-500 text-white self-end ml-auto shadow-md" // ✅ Trenérova zpráva zelená
+                    ? "bg-green-500 text-white self-end ml-auto shadow-md" 
                     : "bg-gray-600 text-white self-start mr-auto shadow-md"
                 }`}
               >
