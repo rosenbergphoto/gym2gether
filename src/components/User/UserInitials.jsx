@@ -19,7 +19,7 @@ const UserInitials = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: 2 }}
-      className="flex justify-center w-full mt-6 px-4 sm:px-6 "
+      className="flex justify-center w-full mt-6 px-4 sm:px-6"
     >
       <div className="w-full max-w-6xl bg-gradient-to-br from-purple-500 via-fuchsia-600 to-pink-700 text-white p-8 rounded-xl shadow-lg hover:scale-105 transition">
         
