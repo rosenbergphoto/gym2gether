@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Flame, Move, Footprints } from "lucide-react";
 
-const UserParameters = () => {
+  const UserParameters = () => {
   const [weeklyStats, setWeeklyStats] = useState({
     calories: [2200, 2100, 2300, 2250, 2350, 2400, 2500],
     distance: [3.5, 4.0, 3.8, 4.2, 4.5, 5.0, 5.2],

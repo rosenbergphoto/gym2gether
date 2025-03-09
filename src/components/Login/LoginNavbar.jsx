@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Link as RouterLink } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/fiticon.png";
 
 const LoginNavbar = () => {
@@ -14,18 +15,18 @@ const LoginNavbar = () => {
 
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
-    document.body.classList.add("overflow-hidden"); // ❌ Zabrání scrollování při otevření
+    document.body.classList.add("overflow-hidden");
   };
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
-    setEmail(""); // ✨ Vyčistí e-mailové pole po zavření
-    document.body.classList.remove("overflow-hidden"); // ✅ Obnoví scrollování
+    setEmail(""); 
+    document.body.classList.remove("overflow-hidden");
   };
 
   const handleSendEmail = () => {
     if (email) {
-      alert(`Pokyny byly odeslány na ${email}`); // Simulace odeslání
+      alert(`Pokyny byly odeslány na ${email}`);
       handleClosePopup();
     } else {
       alert("Prosím zadejte e-mail.");
@@ -39,18 +40,18 @@ const LoginNavbar = () => {
         <div className="container px-4 mx-auto relative lg:text-sm">
           <div className="flex justify-between items-center py-3">
             
-            {/* Logo a název */}
+            {/* Logo */}
             <RouterLink to="/" className="flex items-center flex-shrink-0 cursor-pointer">
               <img className="h-10 w-10 mr-2" src={logo} alt="Logo" />
               <span className="text-xl tracking-tight">Gym2gether</span>
             </RouterLink>
 
-            {/* 🔹 Uprostřed - "Přihlášení" s modrým pozadím */}
+            {/* Přihlášení uprostřed (PC) */}
             <div className="hidden lg:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-500/20 text-blue-400 px-6 py-2 rounded-lg shadow-md">
               <span className="text-lg font-semibold">Přihlášení</span>
             </div>
 
-            {/* 🔹 Tlačítko "Vyžádat kód" */}
+            {/* Tlačítko "Vyžádat kód" (PC) */}
             <div className="hidden lg:flex justify-center space-x-6 items-center">
               <button 
                 onClick={handleOpenPopup}
@@ -60,15 +61,51 @@ const LoginNavbar = () => {
               </button>
             </div>
 
-            {/* 📱 Mobilní menu */}
-            <div className="lg:hidden md:flex flex-col justify-end">
+            {/* Mobilní burger menu */}
+            <div className="lg:hidden flex justify-center items-center">
               <button onClick={toggleNavbar}>
-                {mobileDrawerOpen ? <X /> : <Menu />}
+                {mobileDrawerOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
             </div>
           </div>
         </div>
       </nav>
+
+      {/* Animované mobilní menu */}
+      <AnimatePresence>
+        {mobileDrawerOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-y-0 right-0 w-64 bg-neutral-900 shadow-lg p-6 z-50 transform"
+          >
+            {/* Zavírací tlačítko */}
+            <button
+              onClick={toggleNavbar}
+              className="py-3 px-6 bg-blue-600 text-white rounded-md shadow-md hover:scale-105 hover:bg-blue-700 transition cursor-pointer w-full text-center"
+            >
+              Zavřít
+            </button>
+
+            {/* Navigační tlačítka */}
+            <ul className="mt-6 space-y-4">
+              <li>
+                <button
+                  onClick={() => {
+                    handleOpenPopup();
+                    setMobileDrawerOpen(false);
+                  }}
+                  className="block w-full text-lg text-white bg-gradient-to-r from-blue-500 to-indigo-600 py-3 px-6 rounded-md shadow-md hover:scale-105 transition text-center"
+                >
+                  Vyžádat kód
+                </button>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Pop-up okno */}
       {isPopupOpen && (
@@ -99,7 +136,7 @@ const LoginNavbar = () => {
               </button>
               <button 
                 onClick={handleClosePopup} 
-                className="bg-red-500 py-2 px-5 rounded-md text-white hover:scale-105 transition"
+                className="py-3 px-6 bg-blue-600 text-white rounded-md shadow-md hover:scale-105 hover:bg-blue-700 transition cursor-pointer"
               >
                 Zavřít
               </button>

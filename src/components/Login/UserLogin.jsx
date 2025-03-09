@@ -13,7 +13,6 @@ const UserLogin = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
-  // Simulovaná správná přihlašovací data
   const correctUsername = "tomas";
   const correctPassword = "fitness";
 
@@ -27,16 +26,16 @@ const UserLogin = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
     if (isSuccess) {
-      navigate("/userdash"); // Přesměrování na dashboard při úspěchu
+      window.scrollTo(0, 0);
+      navigate("/userdash"); 
     } else {
-      setUsername(""); // Vymazání jména
-      setPassword(""); // Vymazání hesla
+      setUsername(""); 
+      setPassword(""); 
     }
   };
 
   const handleResetSubmit = (e) => {
     e.preventDefault();
-    // Zde by měl být backendový požadavek pro obnovu hesla
     alert(`Pokud existuje účet s e-mailem ${email}, obdržíte odkaz pro obnovu hesla.`);
     setIsResetPopupOpen(false);
     setEmail("");
@@ -49,7 +48,7 @@ const UserLogin = () => {
       transition={{ duration: 1 }} 
       className="relative flex flex-col items-center mt-6 lg:mt-20"
     >
-      {/* 🏆 Nadpis s animací */}
+      {/* Nadpis s animací */}
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -71,7 +70,7 @@ const UserLogin = () => {
         Zadejte své přihlašovací jméno a heslo:
       </motion.p>
 
-      {/* 📌 Formulář pro přihlášení */}
+      {/* Formulář pro přihlášení */}
       <motion.form 
         onSubmit={handleSubmit} 
         initial={{ opacity: 0, y: 30 }} 
@@ -123,7 +122,7 @@ const UserLogin = () => {
       <motion.p
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, delay: 1.2 }} // Delayed animation
+      transition={{ duration: 1, delay: 1.2 }}
       className="mt-4 text-neutral-500 cursor-pointer hover:underline"
       onClick={() => setIsResetPopupOpen(true)}
       whileHover={{ scale: 1.05 }}
@@ -131,7 +130,7 @@ const UserLogin = () => {
       Zapomněli jste heslo?
     </motion.p>
 
-      {/* 📌 Pop-up okno s animací pro přihlášení */}
+      {/* Pop-up okno s animací pro přihlášení */}
       {isPopupOpen && (
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }} 
@@ -166,7 +165,7 @@ const UserLogin = () => {
         </motion.div>
       )}
 
-      {/* 📌 Pop-up okno pro obnovu hesla */}
+      {/* Pop-up okno pro obnovu hesla */}
       {isResetPopupOpen && (
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }} 

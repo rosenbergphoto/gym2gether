@@ -13,9 +13,8 @@ const CoachLogin = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false); 
 
-  // Simulovaná správná přihlašovací data
   const correctUsername = "jonas";
-  const correctPassword = "coach123";
+  const correctPassword = "coach";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,10 +26,11 @@ const CoachLogin = () => {
   const handleClosePopup = () => {
     setIsPopupOpen(false);
     if (isSuccess) {
-      navigate("/coachdash"); // Přesměrování na dashboard při úspěchu
+      window.scrollTo(0, 0);
+      navigate("/coachdash"); 
     } else {
-      setUsername(""); // Vymazání jména
-      setPassword(""); // Vymazání hesla
+      setUsername(""); 
+      setPassword(""); 
     }
   };
 
@@ -48,7 +48,7 @@ const CoachLogin = () => {
       transition={{ duration: 1 }} 
       className="relative flex flex-col items-center mt-6 lg:mt-20"
     >
-      {/* 🏆 Nadpis */}
+      {/* Nadpis */}
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -70,7 +70,7 @@ const CoachLogin = () => {
         Zadejte své přihlašovací jméno a heslo:
       </motion.p>
 
-      {/* 📌 Formulář pro přihlášení */}
+      {/* Formulář pro přihlášení */}
       <motion.form 
         onSubmit={handleSubmit} 
         initial={{ opacity: 0, y: 30 }} 
@@ -122,7 +122,7 @@ const CoachLogin = () => {
       <motion.p
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1.2 }} // Poslední animace
+        transition={{ duration: 1, delay: 1.2 }}
         className="mt-4 text-neutral-500 cursor-pointer hover:underline"
         onClick={() => setIsResetPopupOpen(true)}
         whileHover={{ scale: 1.05 }}
@@ -130,7 +130,7 @@ const CoachLogin = () => {
         Zapomněli jste heslo?
       </motion.p>
 
-      {/* 📌 Pop-up okno s animací pro přihlášení */}
+      {/* Pop-up okno s animací pro přihlášení */}
       {isPopupOpen && (
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }} 
@@ -165,7 +165,7 @@ const CoachLogin = () => {
         </motion.div>
       )}
 
-      {/* 📌 Pop-up okno pro obnovu hesla */}
+      {/* Pop-up okno pro obnovu hesla */}
       {isResetPopupOpen && (
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }} 

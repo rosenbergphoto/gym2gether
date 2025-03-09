@@ -93,23 +93,23 @@ const UserNavbar = () => {
         </div>
       </nav>
 
-      {/* Animované mobilní menu */}
-      <AnimatePresence>
-        {mobileDrawerOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-y-0 right-0 w-64 bg-neutral-900 shadow-lg p-6 z-50 transform"
-          >
-            {/* Zavírací tlačítko */}
-            <button
-              onClick={toggleNavbar}
-              className="py-3 px-6 bg-blue-600 text-white rounded-md shadow-md hover:scale-105 hover:bg-blue-700 transition cursor-pointer w-full text-center"
-            >
-              Zavřít
-            </button>
+            {/* Animované mobilní menu */}
+            <AnimatePresence>
+              {mobileDrawerOpen && (
+                <motion.div
+                  initial={{ opacity: 0, x: "100%" }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: "100%" }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="fixed inset-y-0 right-0 w-64 bg-neutral-900 shadow-lg p-6 z-50 transform"
+                >
+                  {/* Zavírací tlačítko */}
+                  <button
+                    onClick={toggleNavbar}
+                    className="py-3 px-6 bg-blue-600 text-white rounded-md shadow-md hover:scale-105 hover:bg-blue-700 transition cursor-pointer w-full text-center"
+                  >
+                    Zavřít
+                  </button>
 
             {/* Navigační tlačítka */}
             <ul className="mt-6 space-y-4">
@@ -140,48 +140,48 @@ const UserNavbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Chatovací okno */}
-      {isChatOpen && (
-        <div className="fixed bottom-4 right-4 bg-white/10 backdrop-blur-lg w-96 h-[500px] p-4 shadow-xl rounded-xl border border-gray-300 flex flex-col z-50">
-          <div className="flex justify-between items-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-2 rounded-t-xl">
-            <h3 className="text-lg font-bold">Chat s trenérem</h3>
-            <button onClick={toggleChat} className="text-white hover:text-gray-200">
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+            {/* Chatovací okno */}
+            {isChatOpen && (
+              <div className="fixed bottom-4 right-4 bg-white/10 backdrop-blur-lg w-96 h-[500px] p-4 shadow-xl rounded-xl border border-gray-300 flex flex-col z-50">
+                <div className="flex justify-between items-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-2 rounded-t-xl">
+                  <h3 className="text-lg font-bold">Chat s trenérem</h3>
+                  <button onClick={toggleChat} className="text-white hover:text-gray-200">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
 
-          <div className="flex-1 overflow-y-auto p-2 space-y-2">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`p-2 max-w-[75%] rounded-lg text-sm transition ${
-                  msg.sender === "user" 
-                    ? "bg-gradient-to-r from-green-500 to-teal-400 text-white self-end ml-auto shadow-md" 
-                    : "bg-gray-600 text-white self-start mr-auto shadow-md"
-                }`}
-              >
-                {msg.text}
+                <div className="flex-1 overflow-y-auto p-2 space-y-2">
+                  {messages.map((msg, index) => (
+                    <div
+                      key={index}
+                      className={`p-2 max-w-[75%] rounded-lg text-sm transition ${
+                        msg.sender === "user" 
+                          ? "bg-gradient-to-r from-green-500 to-teal-400 text-white self-end ml-auto shadow-md" 
+                          : "bg-gray-600 text-white self-start mr-auto shadow-md"
+                      }`}
+                    >
+                      {msg.text}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex items-center mt-2">
+                  <input
+                    type="text"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Napište zprávu..."
+                    className="flex-1 p-2 bg-white/10 text-white placeholder-gray-300 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  />
+                  <button 
+                    onClick={sendMessage} 
+                    className="ml-2 bg-blue-600 text-white p-2 rounded-md shadow-md hover:bg-blue-700"
+                  >
+                    <Send className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
-            ))}
-          </div>
-
-          <div className="flex items-center mt-2">
-            <input
-              type="text"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Napište zprávu..."
-              className="flex-1 p-2 bg-white/10 text-white placeholder-gray-300 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
-            <button 
-              onClick={sendMessage} 
-              className="ml-2 bg-blue-600 text-white p-2 rounded-md shadow-md hover:bg-blue-700"
-            >
-              <Send className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      )}
+            )}
         {/* Šipka zpět nahoru */}
         {showScroll && (
           <ScrollLink 

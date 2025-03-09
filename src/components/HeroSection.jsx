@@ -16,21 +16,21 @@ const HeroSection = () => {
   return (
     <div id="herosection" className="relative flex flex-col items-center mt-6 lg:mt-20 px-6">
       
-{/* Obrázek s rozmazáním a fade-out efektem */}
-<div className="absolute top-[-6rem] left-1/2 transform -translate-x-1/2 flex justify-center w-full">
-  <motion.div
-    className="relative w-64 sm:w-80 md:w-96"
-    initial={{ opacity: 0, y: -20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 1 }}
-  >
+    {/* Obrázek s rozmazáním a fade-out efektem */}
+    <div className="absolute top-[-6rem] left-1/2 transform -translate-x-1/2 flex justify-center w-full">
+      <motion.div
+        className="relative w-64 sm:w-80 md:w-96"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
     {/* Samotný obrázek s rozmazáním */}
-    <img
-      src={titleImage}
-      alt="Title Fitness"
-      className="w-full relative z-10 mask-image-gradient"
-    />
-  </motion.div>
+      <img
+        src={titleImage}
+        alt="Title Fitness"
+        className="w-full relative z-10 mask-image-gradient"
+      />
+    </motion.div>
 </div>
 
       {/* Hlavní nadpis s animací */}
@@ -81,7 +81,7 @@ const HeroSection = () => {
         </button>
       </motion.div>
 
-            {/* Videa - zvětšená */}
+      {/* Videa - zvětšená */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: animateText ? 1 : 0, y: animateText ? 0 : 30 }}
@@ -120,19 +120,19 @@ const HeroSection = () => {
             className="bg-neutral-900 text-white p-6 rounded-lg shadow-lg max-w-md w-full"
           >
             <h2 className="text-2xl font-bold text-center mb-4">O projektu</h2>
-            <p className="text-md text-gray-300">
-              Tento projekt vznikl jako <strong>bakalářská práce Davida Rosenberga</strong> na téma:
-              <span className="block mt-2 font-semibold text-white">
-                "Psychologický vliv grafického rozhraní na uživatele".
-              </span>
-            </p>
-            <div className="flex justify-end mt-6">
-              <button 
-                onClick={() => setIsAboutOpen(false)} 
-                className="py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+              <p className="text-md text-gray-300">
+                Tento projekt vznikl jako <strong>bakalářská práce Davida Rosenberga</strong> na téma:
+                <span className="block mt-2 font-semibold text-white">
+                  "Psychologický vliv grafického rozhraní na uživatele".
+                </span>
+              </p>
+                <div className="flex justify-end mt-6">
+                <button 
+                  onClick={() => setIsAboutOpen(false)} 
+                  className="py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
               >
-                Zavřít
-              </button>
+                  Zavřít
+                </button>
             </div>
           </motion.div>
         </div>

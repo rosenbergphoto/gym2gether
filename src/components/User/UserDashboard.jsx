@@ -92,7 +92,7 @@ const UserDashboard = () => {
     <button
       onClick={() => {
         const dayIndex = Object.keys(user.mealPlan).indexOf(selectedDay);
-        setSelectedDay(Object.keys(user.mealPlan)[(dayIndex - 1 + 7) % 7]); // Posun zpět
+        setSelectedDay(Object.keys(user.mealPlan)[(dayIndex - 1 + 7) % 7]); 
       }}
       className="p-3 bg-gray-800 text-white rounded-md shadow-md hover:bg-gray-700"
     >
@@ -104,7 +104,7 @@ const UserDashboard = () => {
     <button
       onClick={() => {
         const dayIndex = Object.keys(user.mealPlan).indexOf(selectedDay);
-        setSelectedDay(Object.keys(user.mealPlan)[(dayIndex + 1) % 7]); // Posun vpřed
+        setSelectedDay(Object.keys(user.mealPlan)[(dayIndex + 1) % 7]); 
       }}
       className="p-3 bg-gray-800 text-white rounded-md shadow-md hover:bg-gray-700"
     >

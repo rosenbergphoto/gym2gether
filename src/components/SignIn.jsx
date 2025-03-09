@@ -1,9 +1,16 @@
 import { CheckCircle2 } from "lucide-react";
 import { pricingOptions } from "../constants";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  
+  const handleLoginClick = (option) => {
+    window.scrollTo(0, 0); 
+    navigate(option.title === "Trenér" ? "/coachsignin" : "/usersignin"); 
+  };
+
   return (
     <div id="prihlaseni" className="mt-20 px-6">
       {/* Nadpis s animací */}
@@ -43,14 +50,12 @@ const SignIn = () => {
               </ul>
 
               {/* 🔹 Přihlašovací tlačítko */}
-              <Link
-                to={option.title === "Trenér" ? "/coachsignin" : "/usersignin"}
-                className="block w-full mt-6 sm:mt-10"
+              <button
+                onClick={() => handleLoginClick(option)}
+                className="w-full h-10 sm:h-12 text-lg sm:text-xl font-semibold text-white bg-gradient-to-r from-teal-500 to-blue-600 rounded-lg shadow-md hover:scale-105 transition mt-6 sm:mt-10"
               >
-                <button className="w-full h-10 sm:h-12 text-lg sm:text-xl font-semibold text-white bg-gradient-to-r from-teal-500 to-blue-600 rounded-lg shadow-md hover:scale-105 transition">
-                  Přihlásit se jako {option.title}
-                </button>
-              </Link>
+                Přihlásit se jako {option.title}
+              </button>
             </div>
           </motion.div>
         ))}
