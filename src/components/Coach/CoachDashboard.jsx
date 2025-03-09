@@ -420,7 +420,7 @@ const CoachDashboard = () => {
             {editMode && (
               <button
               onClick={() => {
-                console.log("Tlačítko Uložit změny bylo kliknuto"); // DEBUG
+                console.log("Tlačítko Uložit změny bylo kliknuto"); 
                 saveChanges();
               }}
               className="flex items-center bg-green-500 text-white px-4 py-2 rounded-md shadow-md hover:scale-105 transition"
